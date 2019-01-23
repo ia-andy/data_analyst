@@ -5,7 +5,7 @@ select
     SUM(CASE WHEN cancelled = 0 THEN 1 ELSE 0 END) AS NotCancelled,
     SUM(CASE WHEN checked_in = 0 AND cancelled = 0 THEN 1 ELSE 0 END) AS NotChecked_in,
     (SUM(CASE WHEN checked_in = 0 AND cancelled = 0 THEN 1 ELSE 0 END))/(SUM(CASE WHEN cancelled = 0 THEN 1 ELSE 0 END)) AS AbandonRate
-from peerfit.all_reservations AS all_reservations
+from peerfit.all_reservations as all_reservations
 where all_reservations.studio_key IS NOT NULL
 group by all_reservations.studio_key
 order by AbandonRate Desc

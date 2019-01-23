@@ -6,7 +6,6 @@ CREATE TABLE all_reservations AS
 select  *
 from	(select
             concat("mindbody",id) as uniqueidentifier,
-            concat("mindbody",member_id) as memberidentifier,
             "mindbody" AS location,
 			id,
 			member_id,
@@ -23,6 +22,7 @@ from	(select
 			canceled_at,
 			CASE WHEN canceled_at IS NULL THEN 0
 				ELSE 1 END AS cancelled,
+			NULL AS reserved_for,
 			class_time_at,
 			checked_in_at,
             CASE WHEN checked_in_at IS NULL THEN 0
@@ -32,8 +32,7 @@ from	(select
 		UNION ALL
 
 		select
-			concat("clubready",id) AS uniqueidentifier,
-            concat("clubready",member_id) AS memberidentifier,
+			concat("clubready",id) as uniqueidentifier,
             "clubready" AS location,
 			id,
 			member_id,
@@ -50,7 +49,8 @@ from	(select
             NULL AS canceled_at,
 			CASE WHEN canceled = 't' THEN 1
 				ELSE 0 END AS canceled,
-			reserved_for AS class_time_at,
+			reserved_for,
+			NULL AS class_time_at,
 			signed_in_at,
             CASE WHEN signed_in_at IS NULL THEN 0
 				ELSE 1 END AS checked_in

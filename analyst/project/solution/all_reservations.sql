@@ -45,7 +45,8 @@ from	(select
 			NULL AS reserved_at,
 			level,
             NULL AS canceled_at,
-			canceled,
+			CASE WHEN canceled = 't' THEN 1
+				ELSE 0 END AS canceled,
 			reserved_for,
 			NULL AS class_time_at,
 			signed_in_at,

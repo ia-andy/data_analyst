@@ -1,10 +1,10 @@
 /***Total Reservations Across Both Data Sets & #7 on Questionnaire***/
 
-DROP TABLE all_reservations;
+DROP TABLE IF EXISTS all_reservations;
 
 CREATE TABLE all_reservations AS
-select  *
-from	(select
+SELECT  *
+FROM	(SELECT
             concat("mindbody",id) AS uniqueidentifier,
             "mindbody" AS location,
 			id,
@@ -27,11 +27,11 @@ from	(select
 			checked_in_at,
             CASE WHEN checked_in_at IS NULL THEN 0
 				ELSE 1 END AS checked_in
-		from peerfit.mindbody_reservations
+		FROM peerfit.mindbody_reservations
 
 		UNION ALL
 
-		select
+		SELECT
 			concat("clubready",id) AS uniqueidentifier,
             "clubready" AS location,
 			id,
@@ -54,7 +54,7 @@ from	(select
 			signed_in_at,
             CASE WHEN signed_in_at IS NULL THEN 0
 				ELSE 1 END AS checked_in
-		from peerfit.clubready_reservations)
+		FROM peerfit.clubready_reservations)
 	AS all_reservations
     
 

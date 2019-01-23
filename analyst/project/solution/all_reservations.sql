@@ -3,9 +3,10 @@
 DROP TABLE all_reservations;
 
 CREATE TABLE all_reservations AS
-select *
+select  *
 from	(select
-			"mindbody" AS location,
+            concat("mindbody",id) as uniqueidentifier,
+            "mindbody" AS location,
 			id,
 			member_id,
 			studio_key,
@@ -31,7 +32,8 @@ from	(select
 		UNION ALL
 
 		select
-			"clubready" AS location,
+			concat("clubready",id) as uniqueidentifier,
+            "clubready" AS location,
 			id,
 			member_id,
 			studio_key,

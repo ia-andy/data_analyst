@@ -1,6 +1,6 @@
 /***Total Reservations Across Both Data Sets & #7 on Questionnaire***/
 
-DROP TABLE all_reservations;
+DROP TABLE IF EXISTS all_reservations;
 
 CREATE TABLE all_reservations AS
 SELECT  *
